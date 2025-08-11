@@ -27,6 +27,9 @@ function Contact() {
       >
         Contact Us
       </h1>
+
+      <button>Submit</button>
+
       <form onSubmit={handleSubmit}>
         <input
           type="text"
