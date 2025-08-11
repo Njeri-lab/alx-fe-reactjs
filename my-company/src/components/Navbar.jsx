@@ -5,6 +5,7 @@ export default function Navbar() {
     <div
       style={{
         fontSize: "10px",
+        backgroundColor: "#000",
       }}
     >
       <nav>
