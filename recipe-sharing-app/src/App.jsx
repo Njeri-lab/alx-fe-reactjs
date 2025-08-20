@@ -4,10 +4,10 @@ import { RecipeList } from "./components/RecipeList";
 
 function App() {
   return (
-    <>
+    <div>
       <RecipeList />
       <AddRecipeForm />
-    </>
+    </div>
   );
 }
 
