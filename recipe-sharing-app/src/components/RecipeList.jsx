@@ -4,12 +4,12 @@ import useRecipeStore from "./recipeStore";
 const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
   const deleteRecipe = useRecipeStore((state) => state.deleteRecipe);
-  const updatedRecipe = useRecipeStore((state) => state.updatedRecipe);
+  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
 
   const [newTitle, setNewTitle] = useState("");
   const [newDescription, setNewDescription] = useState("");
   const handleUpdate = (id) => {
-    updatedRecipe(id, {
+    updateRecipe(id, {
       title: newTitle,
       description: newDescription,
     });
