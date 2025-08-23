@@ -1,70 +1,37 @@
-import { useState } from "react";
 import useRecipeStore from "./recipeStore";
 
-const RecipeList = () => {
+export const RecipeList = () => {
   const recipes = useRecipeStore((state) => state.recipes);
   const deleteRecipe = useRecipeStore((state) => state.deleteRecipe);
-  const updateRecipe = useRecipeStore((state) => state.updateRecipe);
-
-  const [newTitle, setNewTitle] = useState("");
-  const [newDescription, setNewDescription] = useState("");
-  const handleUpdate = (id) => {
-    updateRecipe(id, {
-      title: newTitle,
-      description: newDescription,
-    });
-    setNewTitle("");
-    setNewDescription("");
-
-    <form>
-      <div>
-        <input
-          type="text"
-          value={newTitle}
-          placeholder="New Title"
-          onChange={(e) => setNewTitle(e.target.value)}
-        />
-
-        <textarea
-          value={newDescription}
-          placeholder="New Description"
-          onChange={(e) => setNewDescription(e.target.value)}
-        />
-      </div>
-    </form>;
-  };
+  const updatedRecipe = useRecipeStore((state) => state.updatedRecipe);
+  const newTitle = useRecipeStore((state) => state.newTitle);
+  const newDescription = useRecipeStore((state) => state.newDescription);
+  const setNewTitle = useRecipeStore((state) => state.setNewTitle);
+  const setNewDescription = useRecipeStore((state) => state.setNewDescription);
 
   return (
     <>
-      <div>
-        {recipes.map((recipe) => (
-          <div key={recipe.id}>
-            <h3>{recipe.title}</h3>
-            <p>{recipe.description}</p>
-            <button type="button" onClick={() => deleteRecipe(recipe.id)}>
-              🗑
-            </button>
+      {recipes.map((recipe) => (
+        <div key={recipe.id}>
+          <h3>{recipe.title}</h3>
+          <p>{recipe.description}</p>
 
-            <input
-              type="text"
-              value={newTitle}
-              placeholder="New Title"
-              onChange={(e) => setNewTitle(e.target.value)}
-            />
+          <input
+            type="text"
+            value={newTitle}
+            onChange={(e) => setNewTitle(e.target.value)}
+            placeholder="New Title"
+          />
+          <textarea
+            value={newDescription}
+            onChange={() => setNewDescription}
+            placeholder="New Description"
+          />
 
-            <textarea
-              value={newDescription}
-              placeholder="New Description"
-              onChange={(e) => setNewDescription(e.target.value)}
-            />
-            <button type="button" onClick={() => handleUpdate(recipe.id)}>
-              Update
-            </button>
-          </div>
-        ))}
-      </div>
+          <button onClick={() => deleteRecipe(recipe.id)}>🗑</button>
+          <button onClick={() => updatedRecipe(recipe.id)}>Update</button>
+        </div>
+      ))}
     </>
   );
 };
-
-export default RecipeList;
