@@ -11,8 +11,15 @@ const RegistrationForm = () => {
 
     let newErrors = {};
 
-    if (!username || !email) {
+    if (!username) {
       alert("Must fill in the blanks");
+    }
+
+    if (!email) {
+      alert("Must fill in blanks");
+    }
+    if (!password) {
+      alert("Must fill in blanks");
     }
 
     if (password.length < 8) {
