@@ -4,28 +4,37 @@ const RegistrationForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    let newErrors = {};
 
     if (!username || !email) {
       alert("Must fill in the blanks");
     }
 
     if (password.length < 8) {
-      alert("Passwprd must be at least 8 characters long");
+      alert("Password must be at least 8 characters long");
     }
 
     if (!/\d/.test(password)) {
-      alert("Password must contain at least one number");
+      newErrors.password = "Password must contain at least one number";
     }
 
     if (!/[!@#$%^&*]/.test(password)) {
-      alert("Password must contain at ;east one special character");
+      newErrors.password =
+        "Password must contain at ;east one special character";
     }
 
-    alert("Form submitted successfully");
+    setErrors(newErrors);
+
+    if (Object.keys(newErrors).length === 0) {
+      alert("Form submitted successfully");
+    }
   };
+
   return (
     <>
       <input
@@ -45,6 +54,7 @@ const RegistrationForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
+      {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
 
       <button type="submit" onClick={handleSubmit}>
         Submit
