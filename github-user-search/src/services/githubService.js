@@ -7,7 +7,7 @@ export async function fetchUserData(username) {
     return response.data;
   } catch (error) {
     if (error.response && error.respose.status === 404) {
-      throw new Error("User not found");
+      throw new Error("Looks like we cant find the user");
     }
     throw new Error("Failed to fetch user data");
   }
